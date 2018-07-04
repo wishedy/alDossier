@@ -6,7 +6,7 @@ import App from './app.vue'
 Vue.use(Meta)
 
 const app = new Vue({
-    ...App
+    App
 })
 
 app.$mount('#app')
