@@ -3,13 +3,13 @@
         <Logo></Logo>
         <ul class="alDossier-aside-list">
             <li class="alDossier-aside-item">
-                <a href="../module3">
+                <a href="../routerDemo">
                     <i class="icon icon-build"></i>
                     <p class="title">新建</p>
                 </a>
             </li>
             <li class="alDossier-aside-item">
-                <a href="../module3">
+                <a href="../vuexDemo">
                     <i class="icon icon-patients"></i>
                     <p class="title">选择患者</p>
                 </a>
@@ -31,7 +31,7 @@
         <section class="alDossier-aside-item alDossier-aside-outside">
             <a href="../module3">
                 <i class="icon icon-team"></i>
-                <p class="title">新建</p>
+                <p class="title">团队设置</p>
             </a>
         </section>
     </section>
