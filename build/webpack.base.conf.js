@@ -31,6 +31,8 @@ const baseWebpackConfig = {
             '~src': path.resolve(__dirname, '../src'),
             '~api': path.resolve(__dirname, '../src/api/index'),
             '~api-config': path.resolve(__dirname, '../src/api/config'),
+            '~scss': path.resolve(__dirname, '../src/assets/scss'),
+            '~images': path.resolve(__dirname, '../src/assets/images'),
             '~components': path.resolve(__dirname, '../src/components'),
             '~pages': path.resolve(__dirname, '../src/pages'),
             '~polyfill': path.resolve(__dirname, '../src/polyfill'),

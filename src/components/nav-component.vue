@@ -23,7 +23,7 @@
     </div>
 </template>
 <script>
-import '../assets/scss/base.scss'
+import '~scss/base.scss'
 export default {
     props: ['current']
 }

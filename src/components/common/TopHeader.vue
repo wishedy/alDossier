@@ -12,5 +12,6 @@
         height: 80px;
         z-index: 1;
         background: #ffffff;
+        border-bottom: 1px solid #DFDFDF;
     }
 </style>

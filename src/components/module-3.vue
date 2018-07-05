@@ -1,28 +1,41 @@
 <template>
-    <div class="body">
-        <div class="header">这是模块 - 3</div>
-        <ul class="topics">
-            <li v-for="item in topics" :key="item.id">
-                <a :href="`../view?id=${item.id}`" v-text="item.title" target="_blank"></a>
-            </li>
-        </ul>
-        <div class="pages">
-            <a v-if="page > 1" :href="`?page=${page - 1}`">上一页</a>
-            <a v-else href="javascript:;">上一页</a>
-            <a :href="`?page=${page + 1}`">下一页</a>
-        </div>
+    <div class="alDossier-mainInner">
+        <NavSideBar></NavSideBar>
+        <TopHeader></TopHeader>
+        <!--<nav-component :current="1" style="display: none"/>-->
+        <section class="alDossier-mainIndex">
+            <section class="alDossier-indexInner">
+                <h1>这是模块3</h1>
+            </section>
+        </section>
     </div>
 </template>
 <script>
-export default {
-    props: {
-        topics: {
-            type: Array,
-            default: () => []
+    import navComponent from '~components/nav-component.vue';
+    import NavSideBar from '~components/common/NavSideBar.vue';
+    import TopHeader from '~components/common/TopHeader.vue';
+    import modules from '~components/module-1.vue'
+    import api from '~api'
+    export default {
+        name: 'index-app',
+        data() {
+            return {
+                page: Number(new URLSearchParams(window.location.search).get('page')) || 1,
+                topics: []
+            }
         },
-        page: {
-            default: 1
+        components: {
+            navComponent,
+            modules,
+            NavSideBar,
+            TopHeader
+        },
+        async mounted() {
+            const { success, data } = await api.get('topics', { page: this.page })
+            if (success) this.topics = data
+        },
+        metaInfo: {
+            title: '模块3'
         }
     }
-}
 </script>

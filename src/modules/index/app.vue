@@ -2,9 +2,12 @@
     <div class="alDossier-mainInner">
         <NavSideBar></NavSideBar>
         <TopHeader></TopHeader>
-        <nav-component :current="1" style="display: none"/>
-        <h1>11111211</h1>
-        <!--<modules :topics="topics" :page="page" />-->
+        <!--<nav-component :current="1" style="display: none"/>-->
+        <section class="alDossier-mainIndex">
+            <section class="alDossier-indexInner">
+                <h1>这是首页</h1>
+            </section>
+        </section>
     </div>
 </template>
 <script>
@@ -36,11 +39,3 @@ export default {
     }
 }
 </script>
-<style lang="scss" rel="stylesheet">
-    body{
-        background: #54d9e0;
-        .g-doc{
-            background: #343423;
-        }
-    }
-</style>

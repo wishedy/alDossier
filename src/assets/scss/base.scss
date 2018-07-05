@@ -33,5 +33,13 @@ i{
     padding-bottom: 180px;
     padding-top: 80px;
     overflow: hidden;
+    .alDossier-mainIndex{
+        width: 100%;
+        .alDossier-indexInner{
+            width: 1000px;
+            min-height: 600px;
+            margin: 20px auto;
+        }
+    }
 }
 

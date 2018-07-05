@@ -8,8 +8,8 @@
     .alDossier-logo{
         width: 143px;
         height: 37px;
-        border: 1px solid #fff;
         /*padding-top: 51px;*/
         margin: 51px auto 0 auto;
+        background: url("../../assets/images/common/logo.png") no-repeat center 50%;
     }
 </style>

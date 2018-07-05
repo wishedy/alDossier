@@ -1,6 +1,6 @@
 <template>
-    <div class="body">
-        <div class="header">这是模块 - 2</div>
+    <section class="alDossier-mainIndex">
+        <!--<div class="header">这是模块 - 2</div>
         <ul class="topics">
             <li v-for="item in topics" :key="item.id">
                 <a :href="`../view?id=${item.id}`" v-text="item.title" target="_blank"></a>
@@ -10,8 +10,10 @@
             <a v-if="page > 1" :href="`?page=${page - 1}`">上一页</a>
             <a v-else href="javascript:;">上一页</a>
             <a :href="`?page=${page + 1}`">下一页</a>
-        </div>
-    </div>
+        </div>-->
+        <section class="alDossier-mainIndex">
+        </section>
+    </section>
 </template>
 <script>
 export default {
