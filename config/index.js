@@ -24,11 +24,11 @@ module.exports = {
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
-            '/api': {
-                target: 'http://localhost:3000',
+            '/call': {
+                target: 'http://www.allinmd.cn',
                 changeOrigin: true,
                 pathRewrite: {
-                    '^/api': '/api'
+                    '^/call': '/call'
                 }
             }
         },

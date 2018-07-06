@@ -14,7 +14,8 @@
 import navComponent from '~components/nav-component.vue';
 import NavSideBar from '~components/common/NavSideBar.vue';
 import TopHeader from '~components/common/TopHeader.vue';
-import modules from '~components/module-1.vue'
+import modules from '~components/module-1.vue';
+import axios from 'axios';
 import api from '~api'
 export default {
     name: 'index-app',
@@ -31,8 +32,27 @@ export default {
         TopHeader
     },
     async mounted() {
-        const { success, data } = await api.get('topics', { page: this.page })
-        if (success) this.topics = data
+        // const { success, data } = await api.post('/call/ad/position/profile/getMapList/',
+        //     {"firstResult":0,"maxResult":10,"visitSiteId":1,"channelId":68,"isIndex":1,"platformId":"1","customerId":"1399252409974"}
+        //     )
+        // if (success) {
+        //     console.log(data);
+        // }
+        axios({
+            method: 'post',
+            url: '/call/ad/position/profile/getMapList/',
+            data: {"firstResult":0,"maxResult":10,"visitSiteId":1,"channelId":68,"isIndex":1,"platformId":"1","customerId":"1399252409974"},
+            transformRequest: [function (data) {
+                return "paramJson=" + JSON.stringify(data);
+            }],
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            timeout: 30000
+        }).then(function (res) {
+            console.log(res)
+        });
+
     },
     metaInfo: {
         title: '首页'

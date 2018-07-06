@@ -1,4 +1,4 @@
 module.exports = {
-    api: 'https://cnodejs.org/api/v1/',
+    api: '//www.allinmd.cn/',
     timeout: 30000
 }
