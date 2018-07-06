@@ -17,7 +17,7 @@
             <li class="alDossier-aside-item alDossier-aside-active">
                 <a href="../module3">
                     <i class="icon icon-template"></i>
-                    <p class="title">模板库</p>
+                    <p class="title">全部病例</p>
                     <div class="pointTo"></div>
                 </a>
             </li>
