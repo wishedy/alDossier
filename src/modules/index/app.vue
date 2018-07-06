@@ -6,6 +6,7 @@
         <section class="alDossier-mainIndex">
             <section class="alDossier-indexInner">
                 <h1>这是首页</h1>
+                <!--<Logo></Logo>-->
             </section>
         </section>
     </div>
@@ -15,6 +16,7 @@ import navComponent from '~components/nav-component.vue';
 import NavSideBar from '~components/common/NavSideBar.vue';
 import TopHeader from '~components/common/TopHeader.vue';
 import modules from '~components/module-1.vue';
+// import Logo from '~components/common/Logo.vue';
 import axios from 'axios';
 import api from '~api'
 export default {
@@ -28,6 +30,7 @@ export default {
     components: {
         navComponent,
         modules,
+        // Logo,
         NavSideBar,
         TopHeader
     },
