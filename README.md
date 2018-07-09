@@ -1,4 +1,4 @@
-# vue2 多页配置实例
+# 唯医病历夹vue2 多页配置实例
 
 基于`vue2 + vue-router + vuex`而组成的多页配置实例
 
@@ -9,8 +9,6 @@
 所有模块均带修改head里的title, 所有模块也都包含`ajax`例子, 任何不带`ajax`的例子都是耍流氓
 
 vuex模块带有懒加载
-
-DEMO: http://old.mmxiaowu.com/vue2-multiple-entry/index
 
 fork demo
 
@@ -47,3 +45,11 @@ $ npm run lint
 - /static/         = 静态文件目录
 - /template/       = html文件模版
 - /utils/          = 一些有用的插件
+
+# 热加载入口
+stipulateEntry里面 如果是 /  会热加载整个项目 如果是具体的modules 下的文件名 会单独热加载
+
+# 添加新的页面
+每增加一个页面 需要在 dev-server.js 52行那个USE里面模仿已有页面新加一行代码
+
+#dev-server.js 里面30到37行 如果注释掉，页面热加载的时候不会刷新页面，不注释掉，页面热加载的时候会直接刷新一次，看自己的需要
