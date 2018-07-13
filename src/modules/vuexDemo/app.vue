@@ -1,10 +1,10 @@
 <template>
-    <div class="alDossier-mainInner">
+    <div class="alEmr-mainInner">
         <NavSideBar></NavSideBar>
         <TopHeader></TopHeader>
         <!--<nav-component :current="1" style="display: none"/>-->
-        <section class="alDossier-mainIndex">
-            <section class="alDossier-indexInner">
+        <section class="alEmr-mainIndex">
+            <section class="alEmr-indexInner">
                 <h1>vuxDemo</h1>
                 <button @click="sendNum(12)">发送按钮</button>
                 <h1>{{num}}</h1>

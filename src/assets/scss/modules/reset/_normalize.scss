@@ -1,4 +1,4 @@
-//  @component-name: normalize 
+//  @component-name: normalize
 //  @desc: 样式重置模块
 @charset 'UTF-8';
 @mixin normalize($equipment) {
@@ -427,4 +427,18 @@
             color: #fff;
         }
     }
+}
+
+
+input,textarea{
+    padding: 0;
+    margin: 0;
+    outline:none;
+}
+button{
+    //消除button的默认样式
+    margin: 0;
+    padding: 0;
+    border: 1px solid transparent;  //自定义边框
+    outline: none;    //消除默认点击蓝色边框效果
 }

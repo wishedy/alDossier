@@ -1,6 +1,6 @@
 <template>
-    <section class="alDossier-userLogo">
-        <img src="../../assets/images/common/userLogo.png" alt="">
+    <section class="alEmr-userLogo">
+        <img src="/static/images/common/userLogo.png" alt="">
         <span>这是用户名</span>
     </section>
 </template>
@@ -8,7 +8,7 @@
     export default {}
 </script>
 <style lang="scss">
-    .alDossier-userLogo{
+    .alEmr-userLogo{
         float: left;
         margin: 18px 0 18px 15px;
         img{

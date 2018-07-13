@@ -1,7 +1,7 @@
 <template>
-    <section class="alDossier-header">
-        <section class="alDossier-headerContainer">
-            <section class="alDossier-headerInner">
+    <section class="alEmr-header">
+        <section class="alEmr-headerContainer">
+            <section class="alEmr-headerInner">
                 <SearchInput></SearchInput>
                 <UserLogo></UserLogo>
             </section>
@@ -20,7 +20,7 @@
     }
 </script>
 <style lang="scss" scoped>
-    .alDossier-header{
+    .alEmr-header{
         position: fixed;
         top:0;
         width: 100%;
@@ -28,12 +28,12 @@
         z-index: 1;
         background: #ffffff;
         border-bottom: 1px solid #DFDFDF;
-        .alDossier-headerContainer{
+        .alEmr-headerContainer{
             margin: 0 auto;
             width: 1200px;
             height: 100%;
             position: relative;
-            .alDossier-headerInner{
+            .alEmr-headerInner{
                 float: right;
                 display: inline;
             }

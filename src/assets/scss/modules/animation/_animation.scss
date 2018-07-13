@@ -1,4 +1,4 @@
-//  @component-name: animation 
+//  @component-name: animation
 //  @desc: 动画模块
 //
 //  Created by qiangkailiang on 2016/07/13
@@ -3494,3 +3494,22 @@
         }
     }
 }
+
+
+
+
+@-webkit-keyframes pointerHS {
+    0%, 80%, 100% { -webkit-transform: scale(0.0) }
+    40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes pointerHS {
+    0%, 80%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    } 40% {
+          transform: scale(1.0);
+          -webkit-transform: scale(1.0);
+      }
+}
+

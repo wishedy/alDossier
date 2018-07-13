@@ -15,5 +15,5 @@ const entris = fs.readdirSync(entryPath).reduce(function(o, dirname) {
     }
     return o
 }, {})
-console.log(entris)
+// console.log(entris)
 module.exports = entris

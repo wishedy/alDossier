@@ -7,6 +7,7 @@ const proxyMiddleware = require('http-proxy-middleware')
 
 const webpackConfig = require('./webpack.dev.conf')
 const config = require('../config')
+const entris = require('./entris')
 
 // default port where dev server listens for incoming traffic
 const port = process.env.PORT || config.dev.port
@@ -27,14 +28,14 @@ const devMiddleware = require('webpack-dev-middleware')(compiler, {
 
 const hotMiddleware = require('webpack-hot-middleware')(compiler)
 // force page reload when html-webpack-plugin template changes
-compiler.plugin('compilation', function(compilation) {
-    compilation.plugin('html-webpack-plugin-after-emit', function(data, cb) {
-        hotMiddleware.publish({
-            action: 'reload'
-        })
-        cb()
-    })
-})
+// compiler.plugin('compilation', function(compilation) {
+//     compilation.plugin('html-webpack-plugin-after-emit', function(data, cb) {
+//         hotMiddleware.publish({
+//             action: 'reload'
+//         })
+//         cb()
+//     })
+// })
 
 // proxy api requests
 Object.keys(proxyTable).forEach(function(context) {
@@ -48,20 +49,37 @@ Object.keys(proxyTable).forEach(function(context) {
     app.use(proxyMiddleware(context, options))
 })
 
+let rewrites=((entris)=>{
+    let entrisList=[{ from: /\/$/, to: '/index/index.html' }];
+
+    for (let item in entris) {
+        let itemName=item.split('\\');
+        itemName=itemName[itemName.length-1];
+        entrisList.push({
+            from: new RegExp('\/'+itemName+'$'),
+            to: '/'+itemName+'/index.html'
+        })
+
+    }
+    return entrisList;
+})(entris);
+
 // handle fallback for HTML5 history API
 app.use(
     require('connect-history-api-fallback')({
-        rewrites: [
-            { from: /\/$/, to: '/index/index.html' },
-            { from: /\/index$/, to: '/index/index.html' },
-            { from: /\/module2$/, to: '/module2/index.html' },
-            { from: /\/routerDemo$/, to: '/routerDemo/index.html' },
-            { from: /\/vuexDemo$/, to: '/vuexDemo/index.html' },
-            { from: /\/module3$/, to: '/module3/index.html' },
-            { from: /\/router$/, to: '/router/index.html' },
-            { from: /\/vuex$/, to: '/vuex/index.html' },
-            { from: /\/view$/, to: '/view/index.html' }
-        ]
+        // rewrites: [
+        //     { from: /\/$/, to: '/index/index.html' },
+        //     { from: /\/index$/, to: '/index/index.html' },
+        //     { from: /\/module2$/, to: '/module2/index.html' },
+        //     { from: /\/routerDemo$/, to: '/routerDemo/index.html' },
+        //     { from: /\/vuexDemo$/, to: '/vuexDemo/index.html' },
+        //     { from: /\/module3$/, to: '/module3/index.html' },
+        //     { from: /\/router$/, to: '/router/index.html' },
+        //     { from: /\/vuex$/, to: '/vuex/index.html' },
+        //     { from: /\/view$/, to: '/view/index.html' },
+        //     { from: /\/newCases$/, to: '/newCases/index.html' }
+        // ]
+        rewrites:rewrites
     })
 )
 

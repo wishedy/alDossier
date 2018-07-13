@@ -1,10 +1,10 @@
 <template>
-    <div class="alDossier-mainInner">
+    <div class="alEmr-mainInner">
         <NavSideBar></NavSideBar>
         <TopHeader></TopHeader>
         <!--<nav-component :current="1" style="display: none"/>-->
-        <section class="alDossier-mainIndex">
-            <section class="alDossier-indexInner">
+        <section class="alEmr-mainIndex">
+            <section class="alEmr-indexInner">
                 <h1>vue-router-demo</h1>
                 <router-link to="/demoA" tag="section">A路由</router-link>
                 <router-link to="/demoB">B路由</router-link>

@@ -1,0 +1,32 @@
+const state = {
+    num:0,
+    editType:-1,//-1是默认值，0代表新建病例，1代表修改病例
+    navHeight:0,//代表顶部tab栏的高度
+    templateId:0,//代表使用模板的id
+    pageIndex:-1,//代表路由页面的索引值，初始为基本信息-1，
+    tabList:[],//顶部动态tab栏数据
+    baseInfo:{
+        'patientName':'',
+        'ageYear':'',
+        'ageMonth':'',
+        'ageDay':'',
+        'sex':'',
+        'phoneNum':'',
+        'admissionNum':'',
+        'affiliation':'',
+        'affiliationTeamName':''
+    },
+    pageInfo:{
+      pageId:'',
+      pageName:'',
+      pageData:Object
+    },
+    chiefComplaintInfo:{
+        illPlace:'',
+        illSymptoms:'',
+        widthIllSymptoms:'',
+        illDurationTime:''
+    },
+    'titleName':'填写患者基本信息'//header栏的名字动态改变
+};
+export default state;

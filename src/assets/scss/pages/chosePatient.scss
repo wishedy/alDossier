@@ -1,0 +1,140 @@
+//﻿@charset "UTF-8";
+//公共方法模块调用
+@import "../modules/common-modules";
+//公共变量引用
+@import "../variables/emr-variables";
+.alEmr-mainInner{
+    background: #ffffff;
+}
+.patListCon{
+    .importBtn{
+        width: 107px;
+        height: 50px;
+        font-size: 16px;
+        color: #FFFFFF;
+        background: #2888FF;
+        border-radius: 2px;
+        text-align: center;
+        margin: 20px 0 34px 1093px;
+        position: relative;
+        cursor: pointer;
+        .patChoNum{
+            line-height: 50px;
+        }
+        .patTip{
+            //display: none;
+            position: absolute;
+            background: #fff;
+            //box-shadow:  0 3px 8px 0 rgba(98,111,140,0.15);
+            box-shadow:  0 0 16px 0 rgba(204,214,231,.8);
+            font-size: 16px;
+            color: #333;
+            padding: 18px 25px 15px;
+            left: -57px;
+            top: 70px;
+            text-align: center;
+            &:before{
+                content: "";
+                display: inline-block;
+                position: absolute;
+                left: 65%;
+                margin-left: -5px;
+                height: 0;
+                width: 0;
+                top: -19px;
+                border: 9px solid transparent;
+                border-bottom: 9px solid #eceff2;
+            }
+            &:after{
+                content: "";
+                display: inline-block;
+                position: absolute;
+                left: 65%;
+                margin-left: -5px;
+                height: 0;
+                width: 0;
+                top: -18px;
+                border: 9px solid transparent;
+                border-bottom: 9px solid #fff;
+            }
+        }
+    }
+    .patLists{
+        margin-bottom: 38px;
+        .calendar{
+            margin-bottom: 15px;
+            vertical-align: middle;
+            i{
+                display: inline-block;
+                width: 27px;
+                height: 26px;
+                background: url("/static/images/common/icon/calendarIcon.png") no-repeat center 50%;
+                vertical-align: middle;
+            }
+            span{
+                display: inline-block;
+                width: 86px;
+                height: 21px;
+                border: 1px solid #BBBBBB;
+                border-left: none;
+                font-size: 16px;
+                color: #BBBBBB;
+                line-height: 21px;
+                text-align: center;
+                vertical-align: middle;
+                margin-top: 4px;
+            }
+        }
+        .patListItem{
+            padding-bottom: 27px;
+            border-bottom: 1px solid #EEEEEE;
+            margin-top: 32px;
+            font-size: 0;
+
+            &:last-child{
+                border: none;
+            }
+            span{
+                display: inline-block;
+                //text-align: center;
+                font-size: 16px;
+                line-height: 16px;
+                color: #000000;
+                vertical-align: middle;
+            }
+            &.active{
+                .patChooBtn{
+                    border: none;
+                    background: url("/static/images/common/icon/checkBoxAct.png") no-repeat center 50%;
+                }
+            }
+            .patChooBtn{
+                width: 30px;
+                height: 30px;
+                border: 1px solid #C4C9CC;
+                border-radius: 2px;
+                background: #ffffff;
+                cursor: pointer;
+                margin-right: 30px;
+            }
+            .patType{
+                width: 68px;
+                height: 26px;
+                border-radius: 2px;
+                font-size: 14px;
+                background: #00C761;
+                color: #FFFFFF;
+                line-height: 26px;
+                margin-right: 30px;
+                text-align: center;
+                &.typeTwo{
+                    background: #FF7B37;
+                }
+            }
+            .patName{width: 81px;}
+            .patSex{width: 50px;}
+            .patAge{width: 65px;}
+            .patNum1{width: 168px;}
+        }
+    }
+}

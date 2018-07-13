@@ -69,3 +69,27 @@
     background-image: -webkit-linear-gradient($pos-degree $full); // Safari 5.1+, Chrome
     background-image: unquote("linear-gradient(#{$pos-spec}#{$full})");
 }
+
+
+
+
+/*用i标签写图标*/
+@mixin iconImgI($display:inline-block,$width:0px,$height:0px,$vertical-align:middle){
+    display: $display;
+    width: $width;
+    height: $height;
+    vertical-align: $vertical-align;
+}
+
+/*form表单通用边框*/
+@mixin formBorder($border: 1px solid #C8C8C8,$border-radius: 4px){
+    border: $border;
+    border-radius: $border-radius;
+}
+
+
+/*大部分字体的大小颜色*/
+@mixin fontSize($font-size: 18px,$color: #000000){
+    font-size: $font-size;
+    color: $color;
+}

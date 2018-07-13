@@ -30,7 +30,14 @@ module.exports = {
                 pathRewrite: {
                     '^/call': '/call'
                 }
+            },
+        '/emrpc': {
+            target: 'http://emrpc.allinmd.cn',
+            changeOrigin: true,
+            pathRewrite: {
+                '^/emrpc': '/emrpc'
             }
+        }
         },
         // CSS Sourcemaps off by default because relative paths are "buggy"
         // with this option, according to the CSS-Loader README

@@ -52,4 +52,11 @@ stipulateEntry里面 如果是 /  会热加载整个项目 如果是具体的mod
 # 添加新的页面
 每增加一个页面 需要在 dev-server.js 52行那个USE里面模仿已有页面新加一行代码
 
-#dev-server.js 里面30到37行 如果注释掉，页面热加载的时候不会刷新页面，不注释掉，页面热加载的时候会直接刷新一次，看自己的需要
+# 热加载刷新页面
+dev-server.js 里面30到37行 如果注释掉，页面热加载的时候不会刷新页面，不注释掉，页面热加载的时候会直接刷新一次，看自己的需要
+
+# 简单的实例化引用
+index/app.vue 有引用element的例子  routerDemo是调用路由的demo vuexDemo是调用vuex的demo
+
+# 页面title配置
+metaInfo里面就是当前页面的title

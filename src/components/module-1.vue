@@ -1,5 +1,5 @@
 <template>
-    <section class="alDossier-mainIndex">
+    <section class="alEmr-mainIndex">
         <!--<div class="header">这是模块 - 2</div>
         <ul class="topics">
             <li v-for="item in topics" :key="item.id">
@@ -11,7 +11,7 @@
             <a v-else href="javascript:;">上一页</a>
             <a :href="`?page=${page + 1}`">下一页</a>
         </div>-->
-        <section class="alDossier-indexInner">
+        <section class="alEmr-indexInner">
         </section>
     </section>
 </template>

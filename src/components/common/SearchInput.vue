@@ -1,5 +1,5 @@
 <template>
-    <section class="alDossier-searchInput">
+    <section class="alEmr-searchInput">
         <input type="text" placeholder="搜索病例信息">
         <b></b>
     </section>
@@ -14,7 +14,7 @@
     }
 </script>
 <style lang="scss">
-    .alDossier-searchInput{
+    .alEmr-searchInput{
         float: left;
         margin: 20px 0;
         width: 180px;
@@ -30,9 +30,8 @@
             left: 0;
             z-index: 1;
             border: none;
-            height: 30px;
+            height: 100%;
             width: 140px;
-            line-height: 30px;
             margin-left: 13px;
             color: #333;
         }

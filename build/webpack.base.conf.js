@@ -28,6 +28,7 @@ const baseWebpackConfig = {
         extensions: ['.js', '.vue'],
         modules: [path.join(__dirname, '../node_modules')],
         alias: {
+            'vue$':'vue/dist/vue.esm.js',
             '~src': path.resolve(__dirname, '../src'),
             '~api': path.resolve(__dirname, '../src/api/index'),
             '~api-config': path.resolve(__dirname, '../src/api/config'),
