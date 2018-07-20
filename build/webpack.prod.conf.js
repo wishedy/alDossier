@@ -84,13 +84,25 @@ baseWebpackConfig = merge(baseWebpackConfig, {
 })
 
 Object.keys(entris).forEach(function(entry) {
-    const chunks = ['manifest', 'vendors', entry]
+    const chunks = ['manifest', 'vendors', entry];
+    let template='src/template/index.html';
+    switch (entry){
+        case 'newCases':
+        case 'uploadDemo':
+            template='src/template/uploadImg.html';
+            break;
+        case 'caseDetails':
+            template='src/template/allinmdpayer.html';
+            break;
+        default:
+            break;
+    }
     baseWebpackConfig.plugins.push(
         new HtmlWebpackPlugin({
             isProd: true,
             chunks,
-            filename: entry + '/index.html',
-            template: 'src/template/index.html',
+            filename: (entry==="index"? entry + '.html':entry + '/index.html'),
+            template: template,
             inject: true,
             chunksSortMode(chunk1, chunk2) {
                 const orders = chunks

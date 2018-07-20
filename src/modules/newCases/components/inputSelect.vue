@@ -1,11 +1,11 @@
 <template>
     <div class="formSelect formCommon">
-        <p class="articleText" :class="{'errorText':inputError}"><i v-if="required">*</i>{{labelName}}</p>
+        <p class="articleText" :class="{'errorText':inputError}"><i v-if="isRequired">*</i>{{labelName}}</p>
         <div class="inputSelect">
-            <input type="text"  :class="{'focusBorder':inputFocus,'error':inputError}" @focus="inputFocus=true;" @blur="inputFocus=false" v-model="inputData"/>
-            <div class="SelectCont" @click="toggleSelect"><span  v-text="(selectContent.length)?selectContent:'小时'"></span>
+            <input type="text"  :class="{'focusBorder':inputFocus,'error':inputError}" @focus="inputFocus=true;" @blur="inputFocus=false" v-model="inputContent"/>
+            <div class="SelectCont" @click="toggleSelect"><span  v-text="(selectContent.length)?selectContent:'小时'" class="formInputSelectItem"></span>
                 <ul class="selectOption" v-show="selectOnOff">
-                    <li v-for="(item,index) in inputSelectData" v-text="item.selectName" :key="index"  @click.stop="changeSelect(index)"></li>
+                    <li v-for="(item,index) in inputSelectData" v-text="(item&&item.selectName)?item.selectName:''" :key="index"  @click.stop="changeSelect(index)" class="formInputSelectItem"></li>
                     <!--<li>天</li> <li>周</li> <li>月</li> <li>年</li> <li>小时</li>-->
                 </ul>
             </div>
@@ -14,54 +14,99 @@
 </template>
 <script>
     import regularTest from '~utils/regularTest.js';
+    import {mapActions} from 'vuex';
     export default {
-        props:['labelName','InputSelectList','index','inputContent','testRule','isRequired'],
+        props:{
+            InputSelectList:{
+                type:String
+            },
+            index:{
+                default:'-1'
+            },
+            HandleId:{
+                default:0
+            },
+            isRequired:{
+                type:Boolean,
+                default:false
+            },
+            labelName:{
+                type:String,
+                default:''
+            },
+            needInput:{
+                type:Boolean,
+                default:false
+            },
+            contentDes:{
+                type:String,
+                default:''
+            },
+            placeholder:{
+                type:String,
+                default:''
+            }
+        },
         data(){
             return{
+                inputSelectData:'',
                 selectOnOff:false,
-                inputData:'',
+                inputContent:'',
                 inputFocus:false,
                 inputStart:false,
-                selectIndex:-1
+                selectIndex:-1,
+                testRule:''
             }
         },
         computed: {
-            inputSelectData() {
-                return JSON.parse(this.InputSelectList);
-            },
-            required(){
-                let t = this;
-                return !(parseInt(t.isRequired)===0)
-            },
             selectContent(){
                 let t = this;
-                return (parseInt(t.selectIndex,10)<0)?'':t.inputSelectData[t.selectIndex].selectName;
+                return (parseInt(t.selectIndex,10)<0)?'':((t.inputSelectData[t.selectIndex]&&t.inputSelectData[t.selectIndex].selectName)?(t.inputSelectData[t.selectIndex].selectName):'');
             },
             inputError(){
-                return (!regularTest[this.testRule](this.inputData))&&(this.inputStart)&&(this.inputData.length);
+                return (this.testRule)&&(!regularTest[this.testRule](this.inputContent))&&(this.inputStart)&&(this.inputContent.length);
+            },
+            passOnOff(){
+                return (!this.inputError)?1:0;
             }
         },
         watch:{
-            inputData(){
+            inputContent(n){
                 let t = this;
                 (!t.inputStart)?(t.inputStart = true):'';
-                //console.log('改变');
+                t.changeComponentData({HandleId:t.HandleId,index:t.selectIndex,contentDes:n});
+                t.changeComponentTestResult({HandleId:t.HandleId,testResult:t.passOnOff});
+            },
+            InputSelectList(n){
+                this.inputSelectData = n;
+            },
+            index(n){
+                this.selectIndex = n;
+            },
+            contentDes(n){
+                this.inputContent = n;
+            },
+            selectIndex(n){
+                let t = this;
+                t.changeComponentData({HandleId:t.HandleId,index:n,contentDes:t.inputContent});
+                t.testRule = t.inputSelectData[n].testRule;
             }
         },
         methods:{
+            ...mapActions(['changeComponentData','changeComponentTestResult']),
             toggleSelect(){
                 this.selectOnOff = !this.selectOnOff;
             },
         changeSelect(index){
             let t = this;
-            //console.log(index)
             t.selectIndex = index;
             t.selectOnOff = false;
           }
         },
         mounted(){
+            this.inputSelectData =  JSON.parse(this.InputSelectList);
             this.selectIndex = this.index;
-            this.inputData = this.inputContent;
+            this.inputContent = this.contentDes;
         }
     }
 </script>

@@ -29,12 +29,24 @@ let webpackConfig = merge(baseWebpackConfig, {
 })
 
 Object.keys(entris).forEach(function(entry) {
+    let template='src/template/index.html';
+    switch (entry){
+        case 'newCases':
+        case 'uploadDemo':
+            template='src/template/uploadImg.html';
+            break;
+        case 'caseDetails':
+            template='src/template/allinmdpayer.html';
+            break;
+        default:
+            break;
+    }
     webpackConfig.plugins.push(
         new HtmlWebpackPlugin({
             isProd: false,
             chunks: ['vendors', entry],
             filename: entry + '/index.html',
-            template: 'src/template/index.html',
+            template: template,
             inject: true
         })
     )

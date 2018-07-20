@@ -31,13 +31,27 @@ module.exports = {
                     '^/call': '/call'
                 }
             },
-        '/emrpc': {
-            target: 'http://emrpc.allinmd.cn',
-            changeOrigin: true,
-            pathRewrite: {
-                '^/emrpc': '/emrpc'
+            '/emrpc': {
+                target: 'http://emrpc.allinmd.cn',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/emrpc': '/emrpc'
+                }
+            },
+            '/signIn': {
+                target: 'http://hfu83a.natappfree.cc',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/signIn': '/signIn'
+                }
+            },
+            '/login': {
+                target: 'http://hfu83a.natappfree.cc',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/login': '/login'
+                }
             }
-        }
         },
         // CSS Sourcemaps off by default because relative paths are "buggy"
         // with this option, according to the CSS-Loader README

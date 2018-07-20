@@ -1,3 +1,5 @@
+import comm from "../../../utils/comm";
+
 const actions = {
     sendNum:({commit,state},num)=>{
         commit('sendNum',num);
@@ -14,14 +16,44 @@ const actions = {
     saveNavTopHeight:({commit,state},num)=>{
         commit('saveNavTopHeight',num);
     },
-    saveTemplateId:({commit,state},num)=>{
-        commit('saveTemplateId',num);
+    saveCaseId:({commit,state},num)=>{
+        commit('saveCaseId',num);
+    },
+    getTeamList:({commit,state})=>{
+        commit('getTeamList');
+    },
+    changeComponentTestResult:({commit,state},option)=>{
+        commit("changeComponentTestResult",option);
+    },
+    clickChangeBtn:({commit,state})=>{
+        commit("clickChangeBtn");
+    },
+    saveTemplateId:({commit,state},id)=>{
+      commit('saveTemplateId',id);
     },
     getTabList:({commit,state})=>{
         commit('getTabList');
     },
     changeIndex:({commit,state},options)=>{
         commit('changeIndex',options);
+    },
+    saveBasePageInfo:({commit,state},data)=>{
+        commit('saveBasePageInfo',data);
+    },
+    savePageData:({commit,state},data)=>{
+        commit('savePageData',data);
+    },
+    saveSubPageData:({commit,state},data)=>{
+        commit('saveSubPageData',data);
+    },
+    changeSubIndex:({commit,state},index)=>{
+        commit("changeSubIndex",index);
+    },
+    changeComponentData:({commit,state},options)=>{
+        commit("changeComponentData",options);
+    },
+    examineBasePageData:({commit,state})=>{
+        commit('examineBasePageData');
     }
 }
 export default actions;

@@ -1,10 +1,9 @@
 <template>
     <section class="newCases alEmr-mainInner">
-        <headerTopNav :navName="titleName" @quitSaveCaseInfo="quitSaveCaseInfo"></headerTopNav>
+        <headerTopNav :saveStatus="saveStatus" :crumbsTxt="crumbsTxt" :pageType="1" :navName="titleName" @quitSaveCaseInfo="quitSaveCaseInfo"></headerTopNav>
         <caseTopNav ref="topNavBar"></caseTopNav>
-        <!--<caseLeftNav v-show="parseInt(navHeight,10)" :style="[{'top':(navHeight+71)+'px'}]"></caseLeftNav>-->
-        <caseLeftNav :style="[{'top':(navHeight+71)+'px'}]" v-show="false"></caseLeftNav>
-        <router-view></router-view>
+        <caseLeftNav v-show="parseInt(navHeight,10)" :style="[{'top':(navHeight+71)+'px'}]"></caseLeftNav>
+        <router-view  :style="[{'paddingTop':(navHeight+71)+'px'}]"></router-view>
 
     </section>
 </template>
@@ -18,10 +17,12 @@ export default {
     name: 'index-app',
     data() {
         return {
-            edit: comm.getParamFromUrl(document.URL,'edit')||0,
+            crumbsTxt:"新建病例",
+            edit: (comm.getParamFromUrl(document.URL,'edit')||'0').replace(/[^0-9]/ig,""),
             topics: [],
-            templateId:comm.getParamFromUrl(document.URL,'templateId')||0,
-            heightTop:43
+            queryCaseId:(comm.getParamFromUrl(document.URL,'caseId')||'0').replace(/[^0-9]/ig,""),
+            heightTop:43,
+            saveStatus:0
         }
     },
     components: {
@@ -30,28 +31,34 @@ export default {
         caseTopNav
     },
     async mounted() {
-        console.log(document.URL,comm.getParamFromUrl(document.URL,'templateId'));
-        (parseInt(this.templateId,10))?(this.saveTemplateId(this.templateId)):'';
-        (parseInt(this.templateId,10))?(this.getTabList()):'';
+        /*1532066201016*/
         this.saveEditType(this.edit);
-
+        if(((parseInt(this.queryCaseId,10)>0)||(localStorage.getItem('emrNewCaseCaseId')))){
+            if((parseInt(this.queryCaseId,10)>0)){
+                this.saveCaseId(this.queryCaseId);
+            }else{
+                this.saveCaseId(localStorage.getItem('emrNewCaseCaseId'));
+            }
+        }
+        this.getTeamList();
     },
     computed:{
-        ...mapGetters(['titleName','navHeight','editType','tabList','pageIndex'])
+        ...mapGetters(['titleName','navHeight','editType','tabList','pageIndex','CaseId','templateId','teamList'])
     },
     metaInfo: {
-        title: '新建病例'
+        title: '新建病历'
     },
     methods:{
-        ...mapActions(['saveEditType','saveTemplateId','getTabList']),
+        ...mapActions(['saveEditType','saveCaseId','getTabList','getBaseCaseInfo','getTeamList','changeIndex']),
         quitSaveCaseInfo(){
-            //console.log('触发保存');
+            let t=this;
+            t.saveStatus = 1;
+            setTimeout(function(){
+                t.saveStatus = 2;
+            },2000)
         }
     },
     watch:{
-        editType(newVal){
-            //console.log('改变了'+newVal);
-        },
         pageIndex(newVal){
             if(newVal===-1){
                 console.log('去基本信息');
@@ -59,6 +66,44 @@ export default {
                 console.log('组装页面');
             }
             console.log('跳页了');
+        },
+        CaseId(newVal){
+            //当获取到caseId的时候去发请求获得模板id,，或者新建病例的时候自己去选择一个模板，取出模板id
+            let t = this;
+            console.log(newVal);
+            if(parseInt(newVal,10)>0){
+                if(t.editType===1){
+                    //如果是编辑病例这是需要获取基本信息
+                    t.getBaseCaseInfo();
+                }else{
+                    //如果是在基本信息创建病历后这时候可以去选模板了
+                    if((t.$route.path.replace('/','')==='baseInfo')){
+                        t.getBaseCaseInfo();
+                    }
+                }
+            }else{
+                console.log('没有病例ID');
+            }
+        },
+        '$route'(n){
+            let t = this;
+            if(n.name==='baseInfo'){
+                t.getBaseCaseInfo();
+            }
+        },
+        templateId(newVal){
+            //在获取模板id的时候果断发起请求tab数据的请求
+            let t = this;
+            if(parseInt(newVal,10)>0){
+                t.getTabList();
+            }else{
+                if(t.$route.path.replace('/','')==='tplate'){
+                    t.changeIndex({
+                        index:0
+                    });
+                }
+            }
+
         }
     }
 }

@@ -1,11 +1,8 @@
 <template>
-    <div class="formSelect formCommon"><p class="articleText">{{data.menuName}}</p>
+    <div class="formSelect formCommon"><p class="articleText">{{data.commDataField.fieldName}}</p>
         <div class="inputSelect">
             <input type="text"/>
             <div class="SelectCont"><span>月</span>
-                <ul class="selectOption" style="display: none">
-                    <li>天</li> <li>周</li> <li>月</li> <li>年</li> <li>小时</li>
-                </ul>
             </div>
         </div>
     </div>
@@ -43,7 +40,7 @@
                 border: 1px solid #C8C8C8;
                 border-radius: 4px;
                 margin-right: 20px;
-                background: rgba(216,216,216,0.10);
+                /*background: rgba(216,216,216,0.10);*/
             }
             .SelectCont{
                 float: left;
@@ -60,7 +57,7 @@
                 line-height: 64px;
                  /*padding-left: 20px;*/
                  padding: 0 35px 0 20px;
-                background: rgba(216,216,216,0.10);
+                /*background: rgba(216,216,216,0.10);*/
                 &:after {
                      width: 0;
                      height: 0;

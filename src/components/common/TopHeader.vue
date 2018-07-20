@@ -29,13 +29,14 @@
         background: #ffffff;
         border-bottom: 1px solid #DFDFDF;
         .alEmr-headerContainer{
-            margin: 0 auto;
-            width: 1200px;
+            /*margin: 0 auto;*/
+            /*width: 1200px;*/
             height: 100%;
             position: relative;
             .alEmr-headerInner{
                 float: right;
                 display: inline;
+                margin-right: 225px;
             }
         }
     }

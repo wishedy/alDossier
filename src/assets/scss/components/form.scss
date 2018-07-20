@@ -52,6 +52,7 @@
     margin-right: 39px;
     vertical-align: middle;
     @include fontSize(18px,#333);
+    line-height: 25px;
     i{
         @include fontSize(16px,#F34B4B);
         margin-right: 6px;

@@ -24,6 +24,9 @@
         border-bottom: 1px #E4E9ED solid;
         background: #FAFAFA;
         cursor: pointer;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         &:hover{
             background: #E0EEFF;
         }&.active{

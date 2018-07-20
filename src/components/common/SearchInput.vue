@@ -1,14 +1,26 @@
 <template>
     <section class="alEmr-searchInput">
-        <input type="text" placeholder="搜索病例信息">
-        <b></b>
+        <input type="text" placeholder="搜索病历信息" v-model="search" @keyup="keySearch">
+        <b @click="searchInfo"></b>
     </section>
 </template>
 <script>
     export default {
         data(){
             return{
-                input:''
+                search:''
+            }
+        },
+        methods:{
+            searchInfo(){
+                if(this.search){
+                    window.location.href="/?q="+this.search;
+                }
+            },
+            keySearch(ev){
+                if(ev.keyCode==13){
+                    this.searchInfo();
+                }
             }
         }
     }
@@ -18,12 +30,13 @@
         float: left;
         margin: 20px 0;
         width: 180px;
-        height: 34px;
-        line-height: 34px;
+        height: 44px;
+        line-height: 44px;
         position: relative;
-        border: 1px solid #B8C1CE;
-        border-radius: 20px;
         box-sizing: border-box;
+        background: #FFFFFF;
+        border: 1px solid #A1ADBE;
+        border-radius: 100px;
         input{
             position: absolute;
             top: 0;
@@ -32,14 +45,15 @@
             border: none;
             height: 100%;
             width: 140px;
-            margin-left: 13px;
+            margin-left: 20px;
             color: #333;
+            font-size: 16px;
         }
         b{
             position: absolute;
             z-index: 3;
-            top: 9px;
-            right: 8px;
+            top: 14px;
+            right: 13px;
             width: 14px;
             height: 14px;
             background: transparent url(//img10.allinmd.cn/v3/message/top_search.png) center center no-repeat;

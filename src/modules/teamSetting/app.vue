@@ -1,35 +1,21 @@
 <template>
     <div class="alEmr-mainInner">
-        <NavSideBar></NavSideBar>
+        <NavSideBar :sideSetting="{index:3}"></NavSideBar>
         <TopHeader></TopHeader>
-        <section class="alEmr-mainIndex">
-            <aside class="teamSetting width450">
-                <div class="title">
-                    <p>1.创建团队</p>
-                    <p :class="{notActive:titleOnOFF}">2.邀请成员</p>
+        <router-view></router-view>
+        <!--弹层开始-->
+        <!--<section class="casePopup">
+            <section class="casePopupCont">
+                <div class="close"><i></i></div>
+                <div class="text"><i></i><p><span>更换模板将清空全部病历内容，您确认更换么？</span></p></div>
+                &lt;!&ndash;<div class="text"><i></i><p><span>保存失败</span><span>长期未操作，当前内容已过期失效请重新录入</span></p></div>&ndash;&gt;
+                <div class="btn">
+                    <a class="grey">不保存</a>
+                    <a class="blue">保存</a>
+                    <a class="red">清空并更换</a>
                 </div>
-                <div class="teamSetInput" :class="{'error':checkOnOff,'focus':patientNameFocus}">
-                    <input type="text" placeholder="请为团队起一个名字" v-model="establishText" @focus.stop="patientNameFocus=true" @blur.stop="patientNameFocus=false"/>
-                    <div class="formError" v-show="checkOnOff">{{errorText}}</div>
-                    <ul class="searchUserList">
-                        <li>
-                            <p class="userImg"><img src="https://img05.allinmd.cn/public1/M01/13/5A/wKgBMFsrdDeAawYfAALjjAJhig4145_c_p_300_300.png"/> </p>
-                            <p class="userName">李春辉</p>
-                            <p class="userTitle">副主任医师</p>
-                            <p class="userHospital">中国人民解放军总医院</p>
-                        </li><li>
-                            <p class="userImg"><img src="https://img05.allinmd.cn/public1/M01/13/5A/wKgBMFsrdDeAawYfAALjjAJhig4145_c_p_300_300.png"/> </p>
-                            <p class="userName">李春辉</p>
-                            <p class="userTitle">副主任医师</p>
-                            <p class="userHospital">中国人民解放军总医院</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="establishBtn" @click="establishBtn">{{btnText}}</div>
-                <teamDescription v-show="titleOnOFF"></teamDescription>
-                <recommend v-show="!titleOnOFF"></recommend>
-            </aside>
-        </section>
+            </section>
+        </section>-->
     </div>
 </template>
 <script>
@@ -48,7 +34,6 @@ export default {
             btnText:'创建',
             checkOnOff:false,
             titleOnOFF:true,
-            names:['北京','北海','东北','上海','武汉','东京','广州','广元市','上饶','上水市'],
             'patientNameError':false,
             'patientNameFocus':false
         }
@@ -97,20 +82,6 @@ export default {
 
     },
     async mounted() {
-        axios({
-            method: 'post',
-            url: '/call/ad/position/profile/getMapList/',
-            data: {"firstResult":0,"maxResult":10,"visitSiteId":1,"channelId":68,"isIndex":1,"platformId":"1","customerId":"1399252409974"},
-            transformRequest: [function (data) {
-                return "paramJson=" + JSON.stringify(data);
-            }],
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            timeout: 30000
-        }).then(function (res) {
-            console.log(res)
-        });
 
     },
     metaInfo: {
@@ -121,4 +92,5 @@ export default {
 <style lang="scss">
     @import "../../assets/scss/base.scss";
     @import '../../assets/scss/pages/teamSetting.scss';
+    @import "../../assets/scss/components/casePopup.scss";
 </style>

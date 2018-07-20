@@ -1,24 +1,15 @@
 <template>
     <aside class="surgeryCure">
         <div class="formSelectS formCommon">
-            <div class="articleText">{{data.menuName}}</div>
+            <div class="articleText">{{data.commDataField.fieldName}}</div>
             <div class="cont">
-                <div class="selectCont"><span>2013</span>
-                    <ul class="selectOption" style="display: none">
-                        <li>2014</li><li>2015</li><li>2013</li><li>2014</li>
-                    </ul>
+                <div class="selectCont"><span>{{dataYear}}</span>
                 </div>
                 <b>年</b>
-                <div class="selectCont width83"><span>05</span>
-                    <ul class="selectOption" style="display: none">
-                        <li>2014</li><li>2015</li><li>2013</li><li>2014</li>
-                    </ul>
+                <div class="selectCont width83"><span>{{dataMonth}}</span>
                 </div>
                 <b>月</b>
-                <div class="selectCont width83"><span>10</span>
-                    <ul class="selectOption" style="display: none">
-                        <li>2014</li><li>2015</li><li>2013</li><li>2014</li>
-                    </ul>
+                <div class="selectCont width83"><span>{{dataDay}}</span>
                 </div>
                 <b>日</b>
             </div>
@@ -29,12 +20,39 @@
 <script>
     export default {
         name: "surgery-cure",
-        props:['data']
+        props:['data'],
+        data(){
+            return{
+                dataYear:'',
+                dataMonth:'',
+                dataDay:'',
+            }
+        },
+        methods:{
+            getNowDate() {
+                let date = new Date(),
+                    year = date.getFullYear(),
+                    month = date.getMonth() + 1,
+                    day = date.getDate();
+                this.dataYear = year;
+                if (month < 10) {
+                    month = "0" + month;
+                }
+                this.dataMonth = month;
+                if (day < 10) {
+                    day = "0" + day;
+                }
+                this.dataDay = day;
+            }
+        },
+        mounted(){
+            this.getNowDate();
+        }
     }
 </script>
 
 <style scoped>
-    .newCases .surgeryCure{
+    .newCases.thickCase .surgeryCure{
         padding-bottom: 0;
     }
 </style>

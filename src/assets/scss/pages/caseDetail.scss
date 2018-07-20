@@ -1,15 +1,28 @@
 //公共变量引用
 @import "../variables/emr-variables";
+.bodyHidden{
+    height: 100%;
+    overflow: hidden;
+}
+@media screen and (max-width:1540px){
+    .alEmr-logo{
+        background: url("/static/images/common/logo.png") no-repeat center 50%;
+        width: 37px;
+        height: 37px;
+    }
+    .alEmr-mainIndex{
+        padding-left: 270px;
+    }
+}
 .alEmr-mainInner{
     background: #ffffff;
     padding-bottom: 0;
-    position: relative;
 }
 .alEmr-indexInner{
     width: 1000px;
     margin-top: 0;
     margin-bottom: 0;
-    min-height: 0px;
+    min-height: 0;
 }
 //左边的Tab切换
 .detslideCon{
@@ -17,6 +30,7 @@
     height: 100%;
     background: #F2F2F2;
     position: fixed;
+    top: 71px;
     .detSliItem{
         width: 226px;
         height: 70px;
@@ -35,8 +49,9 @@
 }
 //右边内容区域
 .caseDetailCon{
-    margin-top: 61px;
+    padding-top: 130px;
     .detInfo{
+        overflow: hidden;
         .detItem{
             margin-bottom: 22px;
             position: relative;
@@ -137,6 +152,29 @@
                     line-height: 14px;
                     margin: 15px 0 20px;
                 }
+                .LastPoint{
+                    display: none;
+                }
+                &:last-child{
+                    .LastPoint{
+                        font-size: 0;
+                        display: inline-block;
+                        position: absolute;
+                        bottom: 0;
+                        left: -8px;
+                        width: 20px;
+                        height: 30px;
+                        background: #ffffff;
+                        span{
+                            width: 12px;
+                            height: 12px;
+                            display: inline-block;
+                            background: #2888FF;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+
             }
             .detTitle{
                 display: inline-block;
@@ -185,6 +223,7 @@
                         border-radius: 36px;
                     }
                 }
+
             }
         }
     }
@@ -203,18 +242,19 @@
         }
         //针对基本信息和其他信息进行用'——'区分
         .detItem:last-child{
-            article{
-                border-bottom: 1px solid #DFDFDF;
-                p{
-                    margin-bottom: 36px;
-                }
-            }
-        }
+             article{
+                 border-bottom: 1px solid #DFDFDF;
+                 p{
+                     margin-bottom: 36px;
+                 }
+             }
+
+         }
     }
 }
 .detRecord{
     position: absolute;
-    top: 130px;
+    top: 134px;
     right: 68px;
     font-size: 0;
     div{
@@ -224,17 +264,17 @@
         cursor: pointer;
     }
 }
-//添加病例详情按钮
+//添加病历详情按钮
 .addCaseDetail{
     width: 600px;
     height: 64px;
     border: 1px solid #2888FF;
     border-radius: 4px;
-    font-size: 20px;
-    color: #2888FF;
+    font-size: 20px;color: #2888FF;
     text-align: center;
     line-height: 64px;
     margin: 0 auto;
+    cursor: pointer;
     i{
         display: inline-block;
         width: 20px;
@@ -244,7 +284,7 @@
         transform: translate(0,2px);
     }
 }
-//补充病例按钮
+//补充病历按钮
 .supCase{
     text-align: center;
     margin: 0 auto;
@@ -265,5 +305,323 @@
         line-height: 64px;
         text-align: center;
         margin: 0 auto;
+        cursor: pointer;
     }
 }
+//报道记录
+.reportLogNone{
+    background: rgba(#304364,0.8);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0 auto;
+    z-index: 2;
+    .reportLogCont{
+        width: 800px;
+        height: 600px;
+        background: #FFFFFF;
+        border-radius: 8px;
+        margin: 0 auto;
+        margin-top: 212px;
+        overflow: hidden;
+        .reportLogTop{
+            background: #F2F2F2;
+            border-radius: 8px 8px 0 0;
+            width: 770px;
+            height: 80px;
+            font-size: 24px;
+            color: #666666;
+            line-height: 80px;
+            float: left;
+            padding-left: 30px;
+            i{
+                width: 24px;
+                height: 24px;
+                display: inline-block;
+                background: url("/static/images/common/icon/closeBtnGreey.png") no-repeat center 50%;
+                float: right;
+                margin: 28px 34px 0 0;
+                cursor: pointer;
+            }
+        }
+        .noneReportImg{
+            text-align: center;
+            margin: 239px 0 30px 0;
+        }
+        .noneReportTxt{
+            text-align: center;
+            line-height: 20px;
+            font-size: 20px;
+            color: #333333;
+        }
+    }
+}
+.reportLog{
+    background: rgba(#304364,0.8);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0 auto;
+    z-index: 2;
+    .reportLogCont{
+        width: 800px;
+        //height: 750px;
+        background: #FFFFFF;
+        border-radius: 8px;
+        margin: 0 auto;
+        //margin-top: 212px;
+        overflow: auto;
+        //overflow-x: hidden;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        .reportLogTop{
+            background: #F2F2F2;
+            border-radius: 8px 8px 0 0;
+            width: 770px;
+            height: 80px;
+            font-size: 24px;
+            color: #666666;
+            line-height: 80px;
+            padding-left: 30px;
+            i{
+                width: 24px;
+                height: 24px;
+                display: inline-block;
+                background: url("/static/images/common/icon/closeBtnGreey.png") no-repeat center 50%;
+                float: right;
+                margin: 28px 34px 0 0;
+                cursor: pointer;
+            }
+        }
+        .reportLogBot{
+            height: 750px;
+            overflow-y: auto;
+        }
+    }
+}
+.repItemTitle{
+    background: rgba(#F2F2F2,0.5);
+    width: 100%;
+    height: 50px;
+    span{
+        margin-left: 30px;
+        font-size: 18px;
+        color: #555555;
+        line-height: 50px;
+    }
+}
+.repItemDesc{
+    padding: 36px 0 36px 28px;
+    .repItem{
+        font-size: 0;
+        width: 100%;
+        line-height: 27px;
+        margin-bottom: 20px;
+        vertical-align: top;
+        .repImteLeft{
+            font-size: 18px;
+            width: 95px;
+            display: inline-block;
+            color: #555555;
+            text-align: right;
+            margin-right: 40px;
+        }
+        .repImteRight{
+            font-size: 18px;
+            display: inline-block;
+            color: #000000;
+            width: 600px;
+            vertical-align: top;
+            &.noneTxt{
+                color: #aaaaaa;
+            }
+        }
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+}
+//.reportImgItemCont{
+    .repItemImgDesc{
+        padding: 36px 30px 36px 49px;
+        .ImgItemTitle{
+            font-size: 18px;
+            color: #000000;
+            line-height: 18px;
+            margin-bottom: 30px;
+        }
+        .ImgItemDesc{
+            .ImgItemData{
+                font-size: 18px;
+                color: #555555;
+                line-height: 18px;
+                margin-bottom: 19px;
+            }
+            .imgItemList{
+                margin-bottom: 38px;
+                img{
+                    margin-right: 14px;
+                }
+                .imgItemListDesc{
+                    display: inline-block;
+                    cursor: pointer;
+                    p{
+                        margin-bottom: 14px;
+                        font-size: 18px;
+                        color: #000000;
+                        line-height: 18px;
+                        span{
+                            font-size: 14px;
+                            color: #999999;
+                            line-height: 14px;
+                            margin-right: 40px;
+                        }
+                        &:nth-child(2){
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
+        }
+        .ImgItems{
+            font-size: 0;
+            li{
+                display: inline-block;
+                margin-right: 20px;
+                margin-bottom: 20px;
+                width: 160px;
+                height: 160px;
+                img{
+                    width: 160px;
+                    height: 160px;
+                    cursor: pointer;
+                    display: inline-block;
+                }
+                &:nth-child(4n){
+                    margin-right: 0;
+                }
+                &:nth-child(12){
+                    position: relative;
+                    .repImgMore{
+                        color: #FFFFFF;
+                        font-size: 16px;
+                        width: 160px;
+                        height: 160px;
+                        text-align: center;
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        cursor: pointer;
+                        background: rgba(0,0,0,0.7);
+                        border-radius: 4px;
+                        line-height: 160px;
+                        span{
+                            color: #ffffff;
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+//}
+//问诊记录
+.inqLeftNav{
+    width: 116px;
+    height: 100%;
+    background: #F2F2F2;
+    font-size: 15px;
+    color: #333333;
+    line-height: 15px;
+    display: inline-block;
+    vertical-align: top;
+    position: fixed;
+    overflow: auto;
+    li{
+        height: 64px;
+        text-align: center;
+        line-height: 64px;
+        cursor: pointer;
+        &.active{
+            color: #2888FF;
+            background: #FFFFFF;
+            border-left: 4px solid #2888FF;
+        }
+    }
+}
+.inqContent{
+    //width: ;
+    margin-left: 120px;
+    overflow: hidden;
+    display: inline-block;
+    width: 660px;
+    .inqLogItemCont{
+        width: 679px;
+        //display: inline-block;
+        .repItem .repImteRight{
+            width: 479px;
+        }
+        .repItemTitle{
+            margin-left: 10px;
+            width: 670px;
+        }
+    }
+    .inqImgItemCont{
+        width: 679px;
+        display: inline-block;
+        overflow-x: hidden;
+    }
+    .ImgItems li{
+        &:nth-child(4n){
+            margin-right: 20px;
+        }
+        &:nth-child(3n){
+            margin-right: 0;
+        }
+        &:nth-child(9){
+            position: relative;
+            .repImgMore{
+                color: #FFFFFF;
+                font-size: 16px;
+                width: 160px;
+                height: 160px;
+                text-align: center;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                cursor: pointer;
+                background: rgba(0,0,0,0.7);
+                border-radius: 4px;
+                line-height: 160px;
+                span{
+                    color: #ffffff;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}
+.crumbs{
+    span{
+        font-size: 18px;
+        color: #000000;
+        font-weight: 600;
+        padding-right: 20px;
+    }
+    .detailTxt{
+        font-size: 16px;
+        font-weight: 100;
+        padding-right: 30px;
+        color: #555555;
+    }
+}
+

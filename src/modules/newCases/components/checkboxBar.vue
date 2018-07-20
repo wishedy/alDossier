@@ -1,21 +1,21 @@
 <template>
-    <div class="formRadio formCommon formCheck" :class="{'formRow':(row)}">
+    <div class="formRadio formCommon formCheck" :class="{'formRow':(radioListDemo.length>2)}">
         <p class="articleText"><i v-if="isRequired">*</i>性别</p>
         <div class="radioRight">
-            <div class='radioIconNormal'  v-for="(item,index) in radioListDemo"   :class="{'active':item.checkOnOff}" :key="index" @click="selectCheck(item)"><i></i><span  v-text="item.checkboxName"></span></div>
+            <div class='radioIconNormal'  v-for="(item,index) in radioListDemo"   :class="{'active':item.checkOnOff}" :key="index" @click.stop="selectCheck(index)"><i></i><span  v-text="item.checkboxName"></span></div>
             <div  class='radioIconNormal'   :class="{'active':inputCheck}" :key="-2" @click="selectInput"><i></i><span  >其他</span><input type="text" :placeholder="placeholder" :class="{'error':inputError,'focusBorder':inputFocus}" @focus="inputFocus=true" @blur="inputFocus=false" v-model="inputContent" @click.stop="inputCheck=true"  ref="inputBar"/></div>
         </div>
     </div>
 </template>
 <script>
     import regularTest from '~utils/regularTest.js';
+    import {mapActions} from 'vuex';
     export default {
         props:{
-            RadioList:{
+            checkBoxList:{
                 type:String
             },
             index:{
-                type:String||Number,
                 default:'-1'
             },
             isRequired:{
@@ -52,43 +52,54 @@
                 inputStart:false,
                 inputFocus:false,
                 inputCheck:false,
-                inputContent:''
+                inputContent:'',
+                radioListDemo:[]
             }
         },
         computed:{
             inputError(){
                 //console.log(regularTest[this.testRule])
-                return (!regularTest[this.testRule](this.inputContent))&&(this.inputStart);
-            },
-            radioListDemo(){
-                let t = this;
-                //console.log(JSON.parse(t.RadioList))
-                return JSON.parse(t.checkBoxList);
+                return (this.testRule)&&(!regularTest[this.testRule](this.inputContent))&&(this.inputStart);
             }
         },
         watch:{
             inputContent(newVal){
                 let t = this;
-                //t.setTopNavTitle(newVal);
-                //console.log(this.inputError);
                 (!t.inputStart)?(t.inputStart = true):'';
+            },
+            checkBoxList(n){
+                this.radioListDemo = JSON.parse(n);
+            },
+            contentDes(n){
+                this.inputContent = n;
+            },
+            radioListDemo:{
+                handler(n){
+                    console.log('改变');
+                },
+                deep:true
             }
         },
         methods:{
+            ...mapActions(['changeComponentData','changeComponentTestResult']),
             selectInput(){
               this.inputCheck = !this.inputCheck;
-                this.inputCheck?$(this.$refs.inputBar).trigger("focus"):'';
+              this.inputCheck?$(this.$refs.inputBar).trigger("focus"):'';
             },
-            selectCheck(item){
-                //console.log(index);
-                this.checkOnOff = !this.checkOnOff;
-                //console.log(this.radioIndex)
+            selectCheck(index){
+                let t = this;
+                t.radioListDemo[index].checkOnOff = !t.radioListDemo[index].checkOnOff;
+                let checkLen = 0;
+                for(let i = 0;i<t.radioListDemo.length;i++){
+                    t.radioListDemo[i].checkOnOff?checkLen++:'';
+                }
+                (checkLen===0)?t.changeComponentTestResult({HandleId:t.HandleId,testResult:0}):t.changeComponentTestResult({HandleId:t.HandleId,testResult:1});
             }
         },
         mounted(){
-            //console.log('index');
-            this.radioIndex = this.index;
+            let t = this;
             this.inputContent = this.contentDes;
+            this.radioListDemo = JSON.parse(t.checkBoxList);
         }
     }
 </script>

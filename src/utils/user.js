@@ -10,7 +10,6 @@
 *
 * Created by lichunhui on 2018/7/10.
 * */
-let $ = require("jquery");
 import comm from "./comm.js";
 import TempCache from "./tempcache.js";
 const privilegeRoleConst = {
@@ -92,7 +91,7 @@ const privilegeSceneConst = {
      */
     eSceneTypeSubscribe: 15,
     /**
-     *  病例终端页
+     *  病历终端页
      */
     eSceneTypeCaseDetail: 16,
     /**
@@ -380,6 +379,7 @@ const user={
                         t.userInfo= unite = rep.responseObject;
                         if (unite != null && unite != undefined) {
                             TempCache.setItem("customerRole",unite.customerRole);
+                            TempCache.setItem("userId",unite.customerId);
                             if(unite.mobile){
                                 TempCache.setItem("mobile",unite.mobile);
                             }
@@ -545,7 +545,7 @@ const user={
                         let customerAuth = result.responseObject;
                         let userName = customerAuth.lastName + customerAuth.firstName;
                         TempCache.setItem("userName", userName);
-                        if (!$.isEmptyObject(result)) {
+                        if (!comm.isEmptyObject(result)) {
                             if ((customerAuth.state === 2 || customerAuth.state === 7 || customerAuth.state === 8 || customerAuth.state === 9)) {//已登录
                                 t.isRenZhengStatus = true;
                             }
@@ -628,7 +628,7 @@ const user={
     checkAuthState(){
         let t=this;
         let data=t.customerAuth;
-        if (data === null || data == "" || data.responseObject === undefined || $.isEmptyObject(data.responseObject) || data.responseObject.state == -1) {	//未认证
+        if (data === null || data == "" || data.responseObject === undefined || comm.isEmptyObject(data.responseObject) || data.responseObject.state == -1) {	//未认证
             t.goBackIndex();
         } else {
             let customerId = t.customerAuth.customerId;
@@ -651,7 +651,7 @@ const user={
     },
     //回到唯医首页
     goBackIndex(){
-        //window.location.href="//www.allinmd.cn?form=emr";
+        //window.location.href="//www.allinmd.cn?from=emr";
     }
 };
 export default user;

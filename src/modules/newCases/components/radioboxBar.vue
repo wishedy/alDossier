@@ -1,6 +1,6 @@
 <template>
-    <div class="formRadio formCommon formRadioFocus" :class="{'formRow':(row)}">
-        <p class="articleText"><i v-if="required">*</i>{{labelName}}</p>
+    <div class="formRadio formCommon formRadioFocus" :class="{'formRow':(radioListDemo.length>2)}">
+        <p class="articleText"><i v-if="isRequired">*</i>{{labelName}}</p>
         <div class="radioRight">
             <div class='radioIconNormal'  v-for="(item,index) in radioListDemo"   :class="{'active':index==radioIndex}" :key="index" @click="selectRadio(index)"><i></i><span  v-text="item.radioName"></span></div>
 
@@ -12,14 +12,17 @@
 <script>
     const $ = require('jquery');
     import regularTest from '~utils/regularTest.js';
+    import {mapActions} from 'vuex';
     export default {
         props:{
             RadioList:{
                 type:String
             },
             index:{
-                type:String||Number,
                 default:'-1'
+            },
+            HandleId:{
+                default:0
             },
             isRequired:{
                 type:Boolean,
@@ -76,9 +79,22 @@
                 //t.setTopNavTitle(newVal);
                 //console.log(this.inputError);
                 (!t.inputStart)?(t.inputStart = true):'';
+            },
+            contentDes(n){
+                this.inputContent = n;
+            },
+            index(n){
+                this.radioIndex = n;
+            },
+            radioIndex(n){
+                let t = this;
+                t.changeComponentData({HandleId:t.HandleId,index:n});
+                t.changeComponentTestResult({HandleId:t.HandleId,testResult:1});
+                this.$emit('changeOption',n);
             }
         },
         methods:{
+            ...mapActions(['changeComponentData','changeComponentTestResult']),
             selectRadio(index){
                 let t = this;
                 //console.log(index);

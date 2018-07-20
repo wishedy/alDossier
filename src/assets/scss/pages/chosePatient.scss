@@ -3,8 +3,22 @@
 @import "../modules/common-modules";
 //公共变量引用
 @import "../variables/emr-variables";
+.bodyHidden{
+    height: 100%;
+    overflow: hidden;
+}
+@media screen and (max-width:1540px){
+    .alEmr-logo{
+        background: url("/static/images/common/logo.png") no-repeat center 50%;
+        width: 37px;
+        height: 37px;
+    }
+}
 .alEmr-mainInner{
     background: #ffffff;
+}
+.alEmr-mainIndex{
+    margin-top: 90px;
 }
 .patListCon{
     .importBtn{
@@ -58,6 +72,30 @@
                 border-bottom: 9px solid #fff;
             }
         }
+        .impPro{
+            line-height: 50px;
+            li{
+                @include iconImgI(inline-block,12px,12px);
+                background: rgba(255,255,255,0.7);
+                border-radius: 50px;
+                -webkit-animation: pointerHS 1.4s infinite ease-in-out;
+                animation: pointerHS 1.4s infinite ease-in-out;
+                &:nth-child(1){
+                    -webkit-animation-delay: -0.32s;
+                    animation-delay: -0.32s;
+                }
+                &:nth-child(2){
+                    background: rgba(255,255,255,0.7);
+                    margin: 0 12px;
+                    -webkit-animation-delay: -0.16s;
+                    animation-delay: -0.16s;
+                }
+                &:nth-child(3){
+                    background: #ffffff;
+                    //animation: pointerHS 1s ease infinite 1s;
+                }
+            }
+        }
     }
     .patLists{
         margin-bottom: 38px;
@@ -104,8 +142,19 @@
             }
             &.active{
                 .patChooBtn{
-                    border: none;
                     background: url("/static/images/common/icon/checkBoxAct.png") no-repeat center 50%;
+                }
+            }
+            &.unchecked{
+                span{
+                    color: #909090;
+                }
+                .patChooBtn{
+                    background: url("/static/images/common/icon/checkBoxGrey.png") no-repeat center 50%;
+                }
+                .patType{
+                    background: #BBBBBB;
+                    color: #ffffff;
                 }
             }
             .patChooBtn{
@@ -125,16 +174,128 @@
                 background: #00C761;
                 color: #FFFFFF;
                 line-height: 26px;
-                margin-right: 30px;
+                margin-right: 35px;
                 text-align: center;
                 &.typeTwo{
                     background: #FF7B37;
                 }
             }
-            .patName{width: 81px;}
-            .patSex{width: 50px;}
-            .patAge{width: 65px;}
-            .patNum1{width: 168px;}
+            &.unchecked{
+                span{
+                    color: #909090;
+                }
+                .patChooBtn{
+                    background: url("/static/images/common/icon/checkBoxGrey.png") no-repeat center 50%;
+                }
+                .patType{
+                    background: #BBBBBB;
+                    color: #ffffff;
+                }
+            }
+            .patName{width: 113px;}
+            .patSex{width: 76px;}
+            .patAge{width: 80px;}
+            .patNum1{width: 190px;}
+            .patNum{width: 750px;overflow: hidden;line-height: 16px}
+        }
+    }
+}
+.patPopupCont{
+    background: rgba(#304364,0.8);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0 auto;
+    z-index: 2;
+    .importError{
+        width: 500px;
+        height: 228px;
+        background: #FFFFFF;
+        border-radius: 4px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        .impClose{
+            background: url("/static/images/pages/teamsetting/member_cancel.png") no-repeat center 50%;
+            width: 13px;
+            height: 13px;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            cursor: pointer;
+        }
+        .impErrTop{
+            margin:58px 0 40px 70px;
+            p{
+                font-size: 20px;
+                color: #333333;
+                line-height: 18px;
+                display: inline-block;
+                vertical-align: top;
+                margin-top: 11px;
+            }
+            i{
+                background: url("/static/images/common/icon/errorIcon.png") no-repeat center 50%;
+                width: 40px;
+                height: 40px;
+                display: inline-block;
+                margin-right: 20px;
+            }
+        }
+        .impErrBot{
+            text-align: center;
+            line-height: 44px;
+            font-size: 0;
+            .impCancle{
+                width: 84px;
+                height: 44px;
+                color: #ffffff;
+                font-size: 16px;
+                background: #BBBBBB;
+                border-radius: 2px;
+                margin-right: 20px;
+                cursor: pointer;
+            }
+            .impAgain{
+                width: 116px;
+                height: 44px;
+                color: #ffffff;
+                font-size: 16px;
+                background: #2888FF;
+                border-radius: 2px;
+                cursor: pointer;
+            }
+        }
+        &.importSuc{
+            height: 278px;
+            .impErrTop{
+                i{
+                    background: url("/static/images/common/icon/successIcon.png") no-repeat center 50%;
+                    width: 40px;
+                    height: 40px;
+                    display: inline-block;
+                    margin-right: 20px;
+                }
+                div{
+                    width: 288px;
+                    display: inline-block;
+                    p{
+                        width: 288px;
+                        line-height: 24px;
+                        margin-top: 0;
+                        &:nth-child(2){
+                            font-size: 16px;
+                            margin-top: 16px;
+                        }
+                    }
+                }
+            }
+            .impAgain{
+                cursor: pointer;
+            }
         }
     }
 }

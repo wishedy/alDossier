@@ -110,7 +110,6 @@ const comm={
         let param={};
         let str,item;
         if(url.lastIndexOf(symbol?symbol:"?")>0) {
-            debugger;
             str=url.substring(url.lastIndexOf(symbol?symbol:"?")+1,url.length);
             let arr=str.split("&");
             for(let i=0;i<arr.length;i++) {
@@ -124,6 +123,27 @@ const comm={
     isEmptyObject(obj){
         for(let n in obj){return false}
         return true;
+    },
+    //判断返回对象responseData
+    hasResponseData(r) {
+        if (r && r.responseObject && r.responseObject.responseData && !this.isEmptyObject(r.responseObject.responseData)) {
+            return true
+        }
+        return false
+    },
+    //判断返回对象responseData
+    hasResponseData2(r) {
+        if (r  && r.responseData && !this.isEmptyObject(r.responseData)) {
+            return true
+        }
+        return false
+    },
+    //判断返回信息responseMessage
+    hasResponseMessage(r) {
+        if (r && r.responseObject && r.responseObject.responseMessage && !this.isEmptyObject(r.responseObject.responseMessage)) {
+            return true
+        }
+        return false
     },
     //展示时把html标签转换成字符串显示
     htmlToString(str){

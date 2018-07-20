@@ -63,12 +63,12 @@
             input{
                 height: 100%;
                 border: none;
-                width: 80%;
+                width: 60%;
                 border-radius: 4px;
                 //font-size: 18px;
                 //color: #000000;
                 @include fontSize();
-                padding-left: 20px;
+                padding: 0 20px;
             }
             i{
                 position: absolute;
@@ -140,7 +140,7 @@
                     width: 389px;
                     height: 62px;
                     line-height: 62px;
-                    padding-left: 20px;
+                    padding: 0 20px;
                     @include fontSize(18px,#000);
                 }
 
@@ -160,7 +160,7 @@
                     width: 389px;
                     height: 62px;
                     line-height: 62px;
-                    padding-left: 20px;
+                    padding:0 20px;
                     @include fontSize(18px,#000);
                 }
             }
@@ -225,6 +225,20 @@
             @include fontSize();
             line-height: 64px;
             padding-left: 20px;
+            .formSelectItem{
+                display: inline-block;
+                width: 89px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            .formInputSelectItem{
+                display: inline-block;
+                width: 67px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
             &:after{
                 width: 0;
                 height: 0;
@@ -253,21 +267,35 @@
                 z-index: 1;
                 li{
                     padding-left: 6px;
+                    display: inline-block;
+                    width: 89px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    position: relative;
+
                     &:hover{
                         background: rgba(40,136,255,0.1);
                         border-radius: 2px;
                     }
                 }
+                .formInputSelectItem{
+                    display: inline-block;
+                    width: 89px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
             }
         }
         .inputCont{
-            width: 295px;
+            width: 275px;
             height: 64px;
             @include formBorder();
             //font-size: 18px;
             //color: #000000;
             @include fontSize();
-            padding-left: 20px;
+            padding: 0 20px;
             display: inline-block;
             vertical-align: middle;
         }
@@ -287,6 +315,20 @@
             @include fontSize();
             line-height: 64px;
             padding-left: 20px;
+            .formSelectItem{
+                display: inline-block;
+                width: 175px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            .formInputSelectItem{
+                display: inline-block;
+                width: 89px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
             &:after{
                 width: 0;
                 height: 0;
@@ -312,14 +354,26 @@
                 background: #FFFFFF;
                 box-shadow: 0 4px 10px 0 rgba(0,0,0,0.10);
                 border-radius: 4px;
-                z-index: 2;
+                z-index: 1;
                 li{
                     padding-left: 6px;
                     cursor: pointer;
+                    display: inline-block;
+                    width: 175px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
                     &:hover{
                         background: rgba(40,136,255,0.1);
                         border-radius: 2px;
                     }
+                }
+                .formInputSelectItem{
+                    display: inline-block;
+                    width: 89px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
                 }
             }
         }
@@ -473,10 +527,10 @@
                 @include clearfix();
                 input{
                     float: left;
-                    width: 50px;
+                    width: 30px;
                     height: 64px;
                     line-height: 64px;
-                    padding-left: 20px;
+                    padding: 0 20px;
                     //font-size: 18px;
                     //color: #000000;
                     @include fontSize();
@@ -498,6 +552,13 @@
                     @include fontSize(18px,#999);
                     line-height: 64px;
                     padding-left: 20px;
+                    /*.formInputSelectItem{
+                        display: inline-block;
+                        width: 89px;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }*/
                     &:after {
                         width: 0;
                         height: 0;
@@ -530,6 +591,13 @@
                             &:hover{
                                 background: rgba(40,136,255,0.1);
                                 border-radius: 2px;
+                            }
+                            .formInputSelectItem{
+                                display: inline-block;
+                                width: 89px;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
                             }
                         }
                     }
@@ -620,7 +688,7 @@
     //    padding-bottom: 130px;
     //    margin: 0 auto;
         h2{
-            margin: 56px 0 50px;
+            margin: 0 0 50px;
         }
         p.articleText{
             width: 146px;
@@ -693,3 +761,55 @@
 
 
 
+
+.lookMore{
+    padding: 20px;
+    width: 270px;
+    background: rgba(0,0,0,0.8);
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.10);
+    position: absolute;
+    left: 208px;
+    top: 0;
+    @include fontSize(18px,#fff);
+    line-height: 26px;
+    z-index: 2;
+    &:before{
+        content: '';
+        display: inline-block;
+        position: absolute;
+        left: -22px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-width: 11px;
+        border-style: solid;
+        border-color:  transparent rgba(0,0,0,0.8) transparent transparent;
+        z-index: 3;
+    }
+}
+.selectOption li{
+    position: relative;
+    &:hover{
+        display: block;
+    }
+}
+
+
+@media screen and (max-width:1540px){
+    .newCases{
+        .alEmr-logo{
+            background: url("/static/images/common/logo.png") no-repeat center 50%;
+            width: 143px;
+            height: 37px;
+        }
+    }
+
+}
+
+.formError{
+    font-size: 15px;
+    color: #F34B4B;
+    margin-left: 184px;
+    margin-top: 14px;
+}

@@ -1,5 +1,6 @@
 @charset "UTF-8";
-.alEmr-aside{
+@import "../modules/common-modules";
+/*.alEmr-aside{
     position: fixed;
     left: 0;
     top:0;
@@ -18,12 +19,14 @@
         border-radius: 100px;
         width: 220px;
         height: 50px;
-        margin: 30px auto 0 auto;
+        margin: 30px auto 0;
+        text-align: center;
         a{
             display: block;
             width: 100%;
             height: 100%;
             position: relative;
+            font-size: 0;
             .pointTo{
                 position: absolute;
                 right: -1px;
@@ -39,32 +42,42 @@
         }
         .icon{
             display: inline-block;
-            width: 21px;
-            height: 21px;
-
-            margin: -5px 8px 0 58px;
             vertical-align: middle;
             &-build{
                 background: url("/static/images/aside/buildCase.png") no-repeat center 50%;
+                width: 21px;
+                height: 21px;
             }
             &-patients{
                 background: url("/static/images/aside/selectPatients.png") no-repeat center 50%;
+                width: 22px;
+                height: 23px;
             }
             &-template{
                 background: url("/static/images/aside/templateIcon.png") no-repeat center 50%;
+                width: 22px;
+                height: 22px;
+            }
+            &-allCase{
+                background: url("/static/images/aside/caseIcon.png") no-repeat center 50%;
+                width: 20px;
+                height: 23px;
             }
             &-team{
                 background: url("/static/images/aside/teamIcon.png") no-repeat center 50%;
+                width: 24px;
+                height: 21px;
             }
 
         }
         .title{
             line-height:50px;
-            font-family: MicrosoftYaHei;
             font-size: 18px;
             color: #FEFEFE;
             display: inline-block;
             text-align: left;
+            vertical-align: middle;
+            margin-left: 12px;
         }
     }
     &-normal{
@@ -86,7 +99,7 @@
             width: 21px;
             height: 21px;
             vertical-align: middle;
-            margin: -5px 8px 0 85px;
+            //margin: -5px 8px 0 85px;
         }
         a{
             .pointTo{
@@ -100,8 +113,143 @@
     &-outside{
         position: absolute;
         bottom:80px;
-        left: 50%;
-        margin-left: -110px;
+        width: 270px;
+        !*left: 50%;
+        margin-left: -110px;*!
+        left: 0;
 
+    }
+}*/
+.alEmr-aside{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 270px;
+    height: 100%;
+    background: #303F5B;
+    z-index: 3;
+    text-align: center;
+    .navSideBarLi{
+        margin-top: 63px;
+        a{
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
+        li{
+            text-align: center;
+            cursor: pointer;
+            font-size: 0;
+            span{
+                @include fontSize(18px, #FEFEFE);
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+        .navLeftNormal{
+            width: 220px;
+            height: 50px;
+            line-height: 50px;
+            background: #4B6EA6;
+            border-radius: 100px;
+            margin: 0 auto 30px;
+            i{
+                @include iconImgI();
+                margin-right: 10px;
+                &.caseIcon{
+                    background: url("/static/images/aside/buildCase.png") no-repeat center 50%;
+                    width: 21px;
+                    height: 21px;
+                }
+                &.patientsIcon{
+                    background: url("/static/images/aside/selectPatients.png") no-repeat center 50%;
+                    width: 22px;
+                    height: 23px;
+                }
+            }
+        }
+        .navLeftSpecial{
+            height: 80px;
+            line-height: 80px;
+            &.active{
+                background: #2586FF;
+                position: relative;
+                &:after{
+                    content: '';
+                    width: 0;
+                    height: 0;
+                    border-width: 9px;
+                    border-style: solid;
+                    border-color: transparent #fff transparent transparent;
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+            }
+            i{
+                @include iconImgI();
+                margin-right: 10px;
+                &.templateIcon{
+                    background: url("/static/images/aside/templateIcon.png") no-repeat center 50%;
+                    width: 22px;
+                    height: 22px;
+                }
+                &.allCaseIcon{
+                    background: url("/static/images/aside/caseIcon.png") no-repeat center 50%;
+                    width: 20px;
+                    height: 23px;
+                }
+            }
+            &.position{
+                position: fixed;
+                left: 0;
+                bottom: 50px;
+                width: 270px;
+            }
+        }
+    }
+}
+
+
+
+@media screen and (max-width:1540px){
+    .alEmr-aside {
+        width: 100px;
+        .navSideBarLi{
+            margin-top: 50px;
+            .navLeftNormal,.navLeftSpecial{
+                width: 100px;
+                background: transparent;
+                margin: 0 auto;
+                height: 80px;
+                line-height: 80px;
+                &.active{
+                    background: #2888FF;
+                }
+                span{
+                    width: 36px;
+                }
+                i{
+                    display: none;
+                }
+                span{
+                    line-height: 26px;
+                }
+            }
+            .navLeftSpecial.position{
+                width: 100px;
+                background: transparent;
+                margin: 0 auto;
+                height: 80px;
+                line-height: 80px;
+                &.active{
+                    background: #2888FF;
+                }
+                span{
+                    width: 36px;
+                }
+            }
+        }
     }
 }

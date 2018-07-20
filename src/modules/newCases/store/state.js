@@ -1,10 +1,16 @@
 const state = {
     num:0,
-    editType:-1,//-1是默认值，0代表新建病例，1代表修改病例
-    navHeight:0,//代表顶部tab栏的高度
-    templateId:0,//代表使用模板的id
+    editType:-1,//-1是默认值，0代表新建病历，1代表修改病历
+    navHeight:43,//代表顶部tab栏的高度
+    CaseId:-1,//代表本次病历id
+    templateId:-1,//代表本次病历使用的模板
     pageIndex:-1,//代表路由页面的索引值，初始为基本信息-1，
+    subIndex:-1,
+    teamList:[],
     tabList:[],//顶部动态tab栏数据
+    changePageOnOff:false,//当他改变为false的时候说明那个页面有错误
+    clickNum:0,
+    teamId:-1,
     baseInfo:{
         'patientName':'',
         'ageYear':'',
@@ -16,6 +22,7 @@ const state = {
         'affiliation':'',
         'affiliationTeamName':''
     },
+    subPageData:[],
     pageInfo:{
       pageId:'',
       pageName:'',

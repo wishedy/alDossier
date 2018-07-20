@@ -3,9 +3,10 @@
         <p class="articleText" :class="{'errorText':inputError}"><i v-if="isRequired">*</i>{{labelName}}</p>
         <div class="inputCont" :class="{'error':inputError,'focusBorder':inputFocus}">
             <input type="text" :placeholder="placeholder" v-model="inputContent"  @focus.stop="inputFocus=true" @blur.stop="inputFocus=false"/>
-            <i v-text="maxLen-inputContent.length" v-if="maxLen"></i>
+            <i v-text="maxLen-inputContent.length" v-if="maxLen" v-show="unitName.length===0"></i>
         </div>
         <span v-text="unitName" v-show="unitName"></span>
+        <p class="formError">这是个错误提示提示</p>
     </div>
 </template>
 <script>
@@ -14,8 +15,10 @@
     export default {
         props:{
             maxLen:{
-                type:String,
                 default:''
+            },
+            HandleId:{
+              default:0
             },
             contentDes:{
                 type:String,
@@ -53,16 +56,20 @@
         },
         created(){
             //console.log(this.maxLen,this.contentDes.length)
+            //console.log(this.contentDes);
             this.inputContent = this.contentDes;
         },
         methods:{
-            ...mapActions(['setTopNavTitle'])
+            ...mapActions(['setTopNavTitle','changeComponentData','changeComponentTestResult'])
         },
         computed:{
-            ...mapGetters(['titleName']),
+            ...mapGetters(['titleName','changePageOnOff']),
             inputError(){
                 //console.log(regularTest[this.testRule])
                 return (this.testRule)&&(!regularTest[this.testRule](this.inputContent))&&(this.inputStart);
+            },
+            passOnOff(){
+                return (!this.inputError)?1:0;
             }
         },
         watch:{
@@ -72,6 +79,18 @@
                 //t.setTopNavTitle(newVal);
                 (!t.inputStart)?(t.inputStart = true):'';
                 ((newVal.length>t.maxLen)&&(t.maxLen))?(t.inputContent = (t.inputContent).substring(0,t.maxLen)):'';
+                t.changeComponentData({HandleId:t.HandleId,contentDes:newVal});
+                //debugger;
+                t.changeComponentTestResult({HandleId:t.HandleId,testResult:t.passOnOff});
+            },
+            contentDes(n){
+                //console.log(n);
+                this.inputContent = n;
+            },
+            passOnOff(n){
+                //let t  = this;
+                //t.changeComponentTestResult({HandleId:t.HandleId,testResult:n});
+                console.log('改变了对错判断');
             }
         }
     }

@@ -7,9 +7,6 @@
 </template>
 <script>
 import comm from "~utils/comm.js";
-import login from '~utils/login.js';
-import axios from 'axios';
-import api from '~api'
 export default {
     name: 'index-app',
     data() {

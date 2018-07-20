@@ -10,7 +10,7 @@
 <style lang="scss">
     .alEmr-userLogo{
         float: left;
-        margin: 18px 0 18px 15px;
+        margin: 18px 0 18px 30px;
         img{
             display: inline-block;
             width: 40px;

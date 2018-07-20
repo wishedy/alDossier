@@ -46,6 +46,8 @@
     "less": "^3.0.2",
     "less-loader": "^4.0.6",
     "mini-css-extract-plugin": "^0.4.0",
+    "mock": "^0.1.1",
+    "mockjs": "^1.0.1-beta3",
     "node-sass": "^4.9.0",
     "optimize-css-assets-webpack-plugin": "^4.0.2",
     "ora": "^2.1.0",
