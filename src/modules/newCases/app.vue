@@ -70,7 +70,6 @@ export default {
         CaseId(newVal){
             //当获取到caseId的时候去发请求获得模板id,，或者新建病例的时候自己去选择一个模板，取出模板id
             let t = this;
-            console.log(newVal);
             if(parseInt(newVal,10)>0){
                 if(t.editType===1){
                     //如果是编辑病例这是需要获取基本信息
@@ -95,13 +94,12 @@ export default {
             //在获取模板id的时候果断发起请求tab数据的请求
             let t = this;
             if(parseInt(newVal,10)>0){
-                t.getTabList();
-            }else{
-                if(t.$route.path.replace('/','')==='tplate'){
+                (t.tabList.length===0)?t.getTabList():'';
+                /*if(t.$route.path.replace('/','')==='tplate'){
                     t.changeIndex({
                         index:0
                     });
-                }
+                }*/
             }
 
         }

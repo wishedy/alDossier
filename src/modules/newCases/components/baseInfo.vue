@@ -2,6 +2,7 @@
     <section class="alEmr-indexInner">
         <h2 v-text="titleName"></h2>
         <aside class="casesWidth"><!--//报错时添加error  获取焦点添加focus-->
+            <radioSelectBar :RadioList='sexRadioList' :index="patientSex" isRequired  radioLabelName="归属" selectLabelName="归属团队" :SelectList="selectList" radioIndex="0" selectIndex="0"></radioSelectBar>
             <InputBar maxLen="20"  testRule="testName" isRequired labelName="姓名" placeholder="请输入您的姓名" :HandleId="nameHandleId" :contentDes="nameContent"></InputBar>
             <AgeInput maxLen="20"   testRule="testNum" isRequired labelName="年龄" :HandleId="ageHandleId" :contentYear="contentYear" :contentMonth="contentMonth"  :contentDay="contentDay" testResult="-1"></AgeInput>
             <RadioBar :RadioList='sexRadioList' :index="patientSex" isRequired  labelName="性别" :HandleId="sexHandleId"></RadioBar>
@@ -18,6 +19,7 @@
     import {mapActions,mapGetters} from 'vuex';
     import comm from '../../../utils/comm.js';
     import SelectInput from '../components/selectInput.vue';
+    import radioSelectBar from '../components/radioSelectBar.vue';
     import InputBar from '../components/InputBar.vue';
     import AgeInput from '../components/ageInput.vue';
     import TagList from '../components/tagList.vue';
@@ -81,7 +83,8 @@
             SelectInput,
             TagList,
             ChangeIndex,
-            SelectBar
+            SelectBar,
+            radioSelectBar
         },
         watch:{
             editType(newVal){
@@ -102,7 +105,7 @@
                 let t = this;
                 t.changeTeamPanel(n);
             },
-            baseInfo(newVal){
+                baseInfo(newVal){
                 let t = this;
                 if(!comm.isEmptyObject(newVal)){
                     //初始化首页的前端基本数据结构,带数据的

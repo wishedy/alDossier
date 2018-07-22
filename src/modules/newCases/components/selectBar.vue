@@ -48,7 +48,7 @@
             return {
                 selectOnOff:false,
                 selectIndex:-1,
-                selectData:'[]',
+                selectData:[],
                 hoverContent:'',
             }
         },
